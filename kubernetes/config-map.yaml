@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-config
+  namespace: helm-test
+  labels:
+    app: helm-test
+data:
+  NODE_ENV: "production"
+  
