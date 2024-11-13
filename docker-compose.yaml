@@ -1,8 +1,4 @@
-version: '3'
-
 services:
-
-  # Servicio para el backend
   backend:
     build:
       context: ./backend
@@ -14,11 +10,11 @@ services:
       - test_helm_network
     restart: unless-stopped
 
-
-  # Servicio para el frontend
   frontend:
     build:
       context: ./frontend
+      args:
+        - API_SERVER=${API_SERVER}
     image: carlosmz87/test_helm_frontend:latest
     container_name: test_helm_frontend_container
     ports:
@@ -29,9 +25,9 @@ services:
     networks:
       - test_helm_network
     environment:
-      - REACT_APP_API_SERVER=${REACT_APP_API_SERVER}
-    links:
-      - backend
+      - API_SERVER=${API_SERVER}
+      - NODE_ENV=production
 
 networks:
   test_helm_network:
+    driver: bridge

@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: helm-test
+  labels:
+    app: helm-test
+    component: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helm-test
+      component: frontend
+  template:
+    metadata:
+      labels:
+        app: helm-test
+        component: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: carlosmz87/test_helm_frontend:latest
+        ports:
+        - containerPort: 80
+        envFrom:
+        - secretRef:
+            name: frontend-secrets
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "500m"
+          limits:
+            memory: "512Mi"
+            cpu: "1"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  namespace: helm-test
+  labels:
+    app: helm-test
+spec:
+  selector:
+    app: helm-test
+    component: frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer

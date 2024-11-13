@@ -1,10 +1,13 @@
 import Contacto from '../modelos/contacto'; // Importa la clase Contacto
 
-const API_BASE_URL = 'http://localhost:5000/api'; // Cambia esto a la URL de tu API
+// Usa la variable de entorno REACT_APP_API_SERVER o un valor predeterminado
+const API_BASE_URL = process.env.NODE_ENV === 'production' ? '/api' : process.env.REACT_APP_API_SERVER; 
 
 // Función para agregar un nuevo contacto
 export const addContacto = async (contacto) => {
     try {
+        console.log(process.env.NODE_ENV);
+        console.log(API_BASE_URL);
         // Crea una instancia de Contacto
         const nuevoContacto = new Contacto(contacto.nombre, contacto.telefono);
 
