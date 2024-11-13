@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+
+  # Servicio para el backend
+  backend:
+    build:
+      context: ./backend
+    image: carlosmz87/test_helm_backend:latest
+    container_name: test_helm_backend_container
+    ports:
+      - "5000:5000"
+    networks:
+      - test_helm_network
+    restart: unless-stopped
+
+
+  # Servicio para el frontend
+  frontend:
+    build:
+      context: ./frontend
+    image: carlosmz87/test_helm_frontend:latest
+    container_name: test_helm_frontend_container
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - test_helm_network
+    environment:
+      - REACT_APP_API_SERVER=${REACT_APP_API_SERVER}
+    links:
+      - backend
+
+networks:
+  test_helm_network:
