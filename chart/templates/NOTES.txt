@@ -58,8 +58,11 @@ Once the deployment is complete, follow these steps to access the frontend servi
 
 - If you encounter issues, verify that your `.env` file is correctly configured and that the `deploy.sh` script is in the root directory of the chart.
 - For troubleshooting, you can simulate the deployment without applying changes by running:
-  ```
-  ./deploy.sh 
-  ```
 
-Enjoy your deployment with Helm!
+  ```
+  ./deploy.sh typing (N|n) + enter
+
+  ```
+- To deploy, run the ./deploy.sh script in the terminal and confirm the deployment after the --dry-run execution.
+
+Enjoy your deployment of a simple backend and frontend app with Helm!

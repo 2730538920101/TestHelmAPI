@@ -11,7 +11,7 @@ helm install helm-test . \
 # Preguntar si se desea proceder con el despliegue real
 read -p "¿Deseas ejecutar el despliegue real? (S/N): " respuesta
 
-if [[ "$respuesta" =~ ^[Ss]$ ]]; then
+if [[ "$respuesta" =~ ^[Ss|Yy]$ ]]; then
   echo "Ejecutando despliegue real en el cluster..."
   helm install helm-test . \
     --set secrets.apiServer="$API_SERVER" \

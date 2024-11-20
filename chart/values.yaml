@@ -43,13 +43,12 @@ frontend:
   # Puerto en el que el servicio frontend escucha internamente
   port: 80
   
-  # Configuración de recursos solicitados y límites para el contenedor del frontend
-  resources:
-    requests:
-      # Cantidad mínima de memoria y CPU requerida para ejecutar el contenedor
-      memory: "256Mi"
-      cpu: "500m"
-    limits:
-      # Cantidad máxima de memoria y CPU que puede utilizar el contenedor
-      memory: "512Mi"
-      cpu: "1"
+resources:
+  requests:
+    # Cantidad mínima de memoria y CPU requerida para ejecutar el contenedor
+    memory: "256Mi"
+    cpu: "500m"
+  limits:
+    # Cantidad máxima de memoria y CPU que puede utilizar el contenedor
+    memory: "512Mi"
+    cpu: "1"

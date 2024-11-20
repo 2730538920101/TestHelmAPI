@@ -28,10 +28,4 @@ spec:
             name: env-config
         - secretRef:
             name: frontend-secrets
-        resources:
-          requests:
-            memory: "{{ .Values.frontend.resources.requests.memory }}"
-            cpu: "{{ .Values.frontend.resources.requests.cpu }}"
-          limits:
-            memory: "{{ .Values.frontend.resources.limits.memory }}"
-            cpu: "{{ .Values.frontend.resources.limits.cpu }}"
+        {{- include "helm-test.resources" . | nindent 8 }}
