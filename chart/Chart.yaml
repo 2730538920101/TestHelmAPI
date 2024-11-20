@@ -1,0 +1,16 @@
+apiVersion: v2
+name: helm-test
+description: Helm chart para un despliegue de backend y frontend con configuración dinámica.
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - frontend
+  - backend
+  - helm
+maintainers:
+  - name: Carlos M.
+    email: carlosmartz1995@gmail.com
+    url: https://github.com/2730538920101
+sources:
+  - https://github.com/2730538920101/TestHelmAPI

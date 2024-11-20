@@ -1,0 +1,65 @@
+
+Congratulations! Your chart has been deployed.
+
+To set up this project, follow these steps:
+
+1. **Create a `.env` file in the root directory of the chart:**
+
+   Ensure your `.env` file includes the following variables:
+   ```
+   API_SERVER=http://backend-service.helm-test.svc.cluster.local:5000/api
+   NODE_ENV=production
+   ```
+
+2. **Add the provided `deploy.sh` script to the root directory of the chart.**
+   This script automates the deployment process using Helm.
+
+3. **Run the deployment:**
+
+   First, ensure the script has execution permissions:
+   ```
+   chmod +x deploy.sh
+   ```
+
+   Then execute the script:
+   ```
+   ./deploy.sh
+   ```
+
+---
+
+### Deployment Details
+
+**Namespace:** `{{ .Values.namespace }}`
+**API_SERVER:** This value is securely set during deployment from the `.env` file.
+**NODE_ENV:** This value is securely set during deployment from the `.env` file.
+
+---
+
+### Access the Frontend Service
+
+Once the deployment is complete, follow these steps to access the frontend service:
+
+1. **Retrieve the external IP:**
+   ```
+   kubectl get svc frontend-service -n {{ .Values.namespace }}
+   ```
+
+2. **Open the service in your browser:**
+   ```
+   http://<EXTERNAL-IP>
+   ```
+
+   Replace `<EXTERNAL-IP>` with the value retrieved from the command above.
+
+---
+
+### Additional Notes
+
+- If you encounter issues, verify that your `.env` file is correctly configured and that the `deploy.sh` script is in the root directory of the chart.
+- For troubleshooting, you can simulate the deployment without applying changes by running:
+  ```
+  ./deploy.sh 
+  ```
+
+Enjoy your deployment with Helm!

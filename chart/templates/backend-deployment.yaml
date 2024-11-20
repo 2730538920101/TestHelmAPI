@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "helm-test.labels" . | nindent 4 }}
+    component: backend
+spec:
+  replicas: {{ .Values.backend.replicas }}
+  selector:
+    matchLabels:
+      {{- include "helm-test.labels" . | nindent 6 }}
+      component: backend
+  template:
+    metadata:
+      labels:
+        {{- include "helm-test.labels" . | nindent 8 }}
+        component: backend
+    spec:
+      containers:
+      - name: backend
+        image: "{{ .Values.backend.image }}" # Comillas para valores interpolados
+        ports:
+        - containerPort: {{ .Values.backend.port }}
+        resources:
+          requests:
+            memory: "{{ .Values.backend.resources.requests.memory }}" # Comillas
+            cpu: "{{ .Values.backend.resources.requests.cpu }}"
+          limits:
+            memory: "{{ .Values.backend.resources.limits.memory }}"
+            cpu: "{{ .Values.backend.resources.limits.cpu }}"

@@ -1,0 +1,55 @@
+# Define el namespace donde se desplegarán los recursos de este chart
+namespace: helm-test
+
+secrets:
+  # Dirección del servidor backend utilizada por el frontend.
+  # Este valor debe configurarse desde un archivo .env o con el flag --set en el script de despliegue.
+  apiServer: ""
+
+configMap:
+  # Define el entorno de ejecución para la aplicación frontend.
+  # Valores comunes: "production", "development", "staging".
+  # Este valor también se debe configurar desde un archivo .env o con el flag --set.
+  nodeEnv: ""
+
+backend:
+  # Número de réplicas del deployment del backend
+  replicas: 1
+  
+  # Imagen del contenedor Docker utilizada para el backend
+  image: carlosmz87/test_helm_backend:latest
+  
+  # Puerto en el que el servicio backend escucha internamente
+  port: 5000
+  
+  # Configuración de recursos solicitados y límites para el contenedor del backend
+  resources:
+    requests:
+      # Cantidad mínima de memoria y CPU requerida para ejecutar el contenedor
+      memory: "256Mi"
+      cpu: "500m"
+    limits:
+      # Cantidad máxima de memoria y CPU que puede utilizar el contenedor
+      memory: "512Mi"
+      cpu: "1"
+
+frontend:
+  # Número de réplicas del deployment del frontend
+  replicas: 1
+  
+  # Imagen del contenedor Docker utilizada para el frontend
+  image: carlosmz87/test_helm_frontend:latest
+  
+  # Puerto en el que el servicio frontend escucha internamente
+  port: 80
+  
+  # Configuración de recursos solicitados y límites para el contenedor del frontend
+  resources:
+    requests:
+      # Cantidad mínima de memoria y CPU requerida para ejecutar el contenedor
+      memory: "256Mi"
+      cpu: "500m"
+    limits:
+      # Cantidad máxima de memoria y CPU que puede utilizar el contenedor
+      memory: "512Mi"
+      cpu: "1"
