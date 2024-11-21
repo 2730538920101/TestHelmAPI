@@ -27,8 +27,8 @@ This Helm chart facilitates the deployment of a simple backend and frontend appl
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd <repository-folder>
+git clone https://github.com/2730538920101/TestHelmAPI.git
+cd chart
 ```
 
 ### 2. Create a `.env` File
@@ -43,6 +43,35 @@ NODE_ENV=production
 ### 3. Add the Deployment Script
 
 Ensure the `deploy.sh` script is in the root directory of the chart. This script automates the deployment process.
+
+```
+
+set -a
+source .env
+
+# Simulación del despliegue con dry-run
+helm install helm-test . \
+  --set secrets.apiServer="$API_SERVER" \
+  --set configMap.nodeEnv="$NODE_ENV" \
+  --dry-run
+
+# Preguntar si se desea proceder con el despliegue real
+read -p "¿Deseas ejecutar el despliegue real? (S/N): " respuesta
+
+if [[ "$respuesta" =~ ^[Ss|Yy]$ ]]; then
+  echo "Ejecutando despliegue real en el cluster..."
+  helm install helm-test . \
+    --set secrets.apiServer="$API_SERVER" \
+    --set configMap.nodeEnv="$NODE_ENV"
+  echo "¡Despliegue completado exitosamente!"
+elif [[ "$respuesta" =~ ^[Nn]$ ]]; then
+  echo "Has cancelado el despliegue. No se aplicaron cambios."
+else
+  echo "Respuesta no válida. Cancelando el despliegue."
+fi
+
+
+```
 
 ### 4. Deploy the Chart
 
