@@ -3,10 +3,10 @@ entries:
   helm-test:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2024-11-21T17:02:46.398367283-06:00"
+    created: "2024-11-21T17:45:08.259072584-06:00"
     description: Helm chart para un despliegue de backend y frontend con configuración
       dinámica.
-    digest: a2321c60152db8d6a1ba879690776283390b144f4519149ffd706dbe8d9844f2
+    digest: b5cada592007a3309fff51a4deedfc99b96c54752087a6af8ed5c9044afd4c1c
     keywords:
     - frontend
     - backend
@@ -22,4 +22,4 @@ entries:
     urls:
     - https://2730538920101.github.io/TestHelmAPI/chart/helm-test-1.0.0.tgz
     version: 1.0.0
-generated: "2024-11-21T17:02:46.397435283-06:00"
+generated: "2024-11-21T17:45:08.25856164-06:00"
