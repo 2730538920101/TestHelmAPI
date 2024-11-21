@@ -22,4 +22,5 @@ entries:
     urls:
     - https://2730538920101.github.io/TestHelmAPI/chart/helm-test-1.0.0.tgz
     version: 1.0.0
+    readme: https://github.com/2730538920101/TestHelmAPI/blob/main/chart/README.md
 generated: "2024-11-21T17:02:46.397435283-06:00"
